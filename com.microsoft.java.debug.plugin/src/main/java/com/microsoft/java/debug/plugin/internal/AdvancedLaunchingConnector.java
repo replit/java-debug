@@ -25,7 +25,6 @@ import org.apache.commons.io.IOUtils;
 import org.eclipse.jdi.internal.VirtualMachineImpl;
 import org.eclipse.jdi.internal.VirtualMachineManagerImpl;
 import org.eclipse.jdi.internal.connect.SocketLaunchingConnectorImpl;
-import org.eclipse.jdi.internal.connect.SocketListeningConnectorImpl;
 
 import com.microsoft.java.debug.core.DebugUtility;
 import com.microsoft.java.debug.core.LaunchException;
@@ -82,7 +81,7 @@ public class AdvancedLaunchingConnector extends SocketLaunchingConnectorImpl imp
             // do nothing.
         }
 
-        SocketListeningConnectorImpl listenConnector = new SocketListeningConnectorImpl(
+        LocalhostSocketListeningConnector listenConnector = new LocalhostSocketListeningConnector(
                 virtualMachineManager());
         Map<String, Connector.Argument> args = listenConnector.defaultArguments();
         ((Connector.IntegerArgument) args.get("timeout")).setValue(ACCEPT_TIMEOUT); //$NON-NLS-1$
